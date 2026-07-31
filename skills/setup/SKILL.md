@@ -31,6 +31,11 @@ Never `cd` to a path taken from a label. If a specific directory is genuinely ne
 | **Meta Ads** | list ad accounts | Settings → Connectors → Meta Ads. Needs access to the ad accounts, granted in Meta Business Manager by whoever owns them |
 | **CRM** | one aggregate query, counts only | Settings → Connectors. Access granted by the CRM owner |
 | **Google Ads** | attempt a call | Usually absent: the API needs a developer token, which takes weeks. Report as a known long-lead gap, not a setup mistake |
+| **GitHub** | read something from a repository | Authorise it — the plugin already declares the connector, so it is listed but unapproved rather than absent. Do not tell anyone to add it |
+
+**Check GitHub by using it, not by looking for its name.** More than one thing can provide GitHub access, and they are named differently. A failed clone proves the *credentials* are missing, not that no connector exists — report what the call actually did rather than inferring absence from an unrelated failure.
+
+When it is present, say which repositories it reaches. That is what turns the state-repository question into a pick-list instead of a typing exercise.
 
 For Meta, report **how many ad accounts are reachable and their names**. One account visible where the portfolio has four is the most common silent failure, and it produces confident answers built on a quarter of the picture.
 
