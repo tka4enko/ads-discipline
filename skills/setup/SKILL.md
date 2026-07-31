@@ -48,13 +48,16 @@ Build the choices like this:
 
 **With the GitHub connector** — list the repositories it can reach and offer them as choices. Each choice is a real address, so selecting one is a complete answer. Put the likeliest first: most recently pushed, and anything already containing `findings/` or an `.ads-state` marker.
 
-**Without the connector** — the question still appears. There is nothing to list, so offer these instead:
+**Without the connector** — the question still appears, with two choices only:
 
-- *Connect GitHub and pick from a list* — explains why there are no names to show and what connecting would give
 - *Type the address* — free text, `owner/repo`
-- *No repository yet* — nothing is recorded, and every answer says so
+- *No repository yet* — nothing is recorded, and every answer will say so
 
-**Never offer a choice that is not a complete answer.** "Use an existing repo" advances nothing: the address still has to be asked for afterwards, so the same question gets asked twice and the flow reads as broken. Either the choice carries the address, or it carries an action that produces one.
+Do not offer "connect GitHub" as a choice. Selecting it produces no answer: it sends the person to a settings screen and ends the exchange, so they come back to the same question having gained nothing. Mention in the question text that connecting GitHub would turn this into a pick-list — as information, not as something selectable.
+
+**Every choice must end the question.** After selecting it, the answer exists — either because the choice was the address, or because it settled the matter ("no repository yet" settles it: nothing gets recorded).
+
+A choice that hands back a task fails this. "Use an existing repo" still needs the address afterwards. "Connect GitHub" sends the person elsewhere and returns them to the same prompt. Both read as a broken flow, and both are the same mistake: describing an intention instead of supplying an answer.
 
 **Free text is always available.** The repository may not exist yet, or may live where the connector cannot see it. A prompt offering only fixed choices is worse than none — the person can see they are being asked and has no way to answer.
 
