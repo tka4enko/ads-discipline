@@ -47,7 +47,7 @@ Configuration is the wrong shape for this. The folder someone connects should si
 
 Pulling matters more than it looks: another person may have recorded findings, retracted one, or closed a gap since this copy was last updated. Report how far behind it was — "3 new findings since this copy last synced" is worth saying, and silence there reads as "nothing changed".
 
-**If the connected folder is empty:**
+**If state is unreachable — the folder is empty, or there is no folder at all — ask. Both cases get the same question; the cause differs, the decision does not.**
 
 **Step 1 — get the list first.** Call the GitHub connector and retrieve the repositories it can reach. Do this *before* composing the question. Do not skip it because the answer seems obvious, and do not proceed on the assumption that no list is available.
 
@@ -80,7 +80,7 @@ Do not invent placeholder choices to fill a list, and do not offer connecting an
 
 > This folder is empty, so nothing found here survives the conversation. Which repository should keep the findings? An empty one is fine.
 
-**If there is no folder at all** — say so. Answer from live data and note each time that nothing is being recorded. Do not go searching for a repository: without a folder there is nowhere to put the answer, so it would have to be asked again every session.
+**With no folder connected at all**, the same question applies. Where the GitHub connector works, a repository is enough on its own — findings are written through it and no folder is needed. Where it does not, say that a folder has to be added before anything can be recorded, and name that as the single next action.
 
 **Never guess an address.** More than one candidate means ask which. Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else.
 
@@ -139,3 +139,5 @@ NEXT
 - Report a source as connected because it appears in a menu — call it
 - Guess a repository address, a business name or an account id
 - Continue into analysis. This skill answers "am I set up" and stops. The reader asked what to connect, not what their campaigns are doing
+- **End by offering to work anyway.** "Should I start looking at the accounts knowing nothing gets saved?" makes the losing path the easy one, and it is the one people take. Where recording is impossible, the setup step is the answer and there is no alternative to put beside it
+- Ask in prose when the surface has a question tool. A sentence in a report is read as commentary and skipped
