@@ -66,6 +66,8 @@ The last two exist because "we'll see how it goes" is how a budget disappears wi
 
 **Verify the event is alive before building anything on it.** This is not paranoia: a rule that stops matching (a renamed thank-you page, a redeployed domain) fails silently, the campaign keeps spending, and every report shows a plausible number for something else.
 
+**Pending intents come first.** Before interrogating anything new, check `decisions/` in the state repository for records with `intent: pending`. Each is a change somebody made without stating a goal — raise it through the surface's question tool, once per session: what is this for, how many, at what price, by when. The answers fill `metric`, `expected` and `verify_after` on the existing record and flip `intent` to `stated`. Do not open a duplicate record: the detected one is the record.
+
 ---
 
 ## Mode `goal` → `goal.md`

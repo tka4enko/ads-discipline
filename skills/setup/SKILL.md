@@ -92,7 +92,9 @@ Establish which write path exists and say which one applies, because they must n
 
 - **folder connected** → files are written locally, then committed and pushed with git in the same turn
 - **git connector, write access** → commits go through the connector, no local file
-- **neither** → findings cannot be recorded. Say this plainly: work done in this session will be lost, and the next session will repeat it
+- **neither** → findings cannot be recorded. Say this plainly and stop short of analysis (CONVENTIONS §12)
+
+Name the state layout while reporting: `snapshots/` and `briefs/` are written by the daily routine, `decisions/` by whoever changes anything, `findings/` and `gaps.md` by analysis. If `briefs/` has no file newer than 2 days, say so — the routine is the system's pulse, and a stopped pulse is the first thing to report.
 
 ## Output
 

@@ -166,36 +166,57 @@ That is the whole rule. Do not search for the repository, do not infer it, and d
 
 ## 12. Record without being asked
 
-Nobody will remember to tell you to write things down, and nobody should have to. **Decide for yourself what is worth keeping, and keep it in the same turn you established it.**
+Nobody will remember to tell you to write things down, and nobody should have to. Decide yourself, by these categories — then write first and report after. Never ask permission to record: "shall I record this?" is the same failure as not recording.
 
-Record when any of these is true:
+**Always record:**
+- a conclusion that cost real work to establish
+- a retraction — something previously recorded turned out wrong. This one matters most: a retraction that stays in conversation lets the archive keep serving a dead conclusion
+- a gap: what could not be established and what it would take
 
-- **a number that will be quoted again** — spend over a period, cost per result, a count from the CRM. Someone will ask for it next week and reconstructing it costs the same queries again
-- **a conclusion that changes a decision** — what to pause, what to test, what to stop paying for
-- **something previously recorded turns out to be wrong** — this one matters most. A retraction that stays in conversation lets the archive keep serving a conclusion everyone has already abandoned
-- **a gap** — something that could not be established, and what it would take
-- **it took more than a couple of queries to work out.** That effort is the thing being saved
+**Record with a baseline — mandatory, before the change where possible:**
+- any change to an account: what was done, what it stood at, what is expected, when to verify
+- any launch of something new — same form
 
-Do not record a lookup, a restatement of what the interface already shows, or an answer that changed nothing. An archive of everything is searched by nobody.
+Use the decision record in §12a. A change without a baseline cannot be judged later, and the pre-change state is the one thing no query can ever recover.
 
-**Write it, then report it. Never ask first.** "Shall I record this?" is the same failure as not recording: it puts the work behind a decision nobody makes, and the conversation ends with the finding still in it. The criteria above are the decision — apply them and act.
+**Never record:**
+- current state with no change and no conclusion — it is re-queryable any moment, and stale copies of live metrics read as facts
+- anything a single query reproduces
+
+One-phrase test: *re-queryable in one call and different tomorrow → do not record. Unrecoverable once gone → record now.*
 
 Report in one line, after the fact:
 
 > Recorded: `findings/2026-08-01-instagram-share.md` — committed `a1b2c3d`
 
-**A blocked push is not a reason to skip recording.** Commit locally and say the push is pending. A commit on one disk beats a finding that exists only in a conversation, and the push catches up later. The only situation with nothing to do is no repository at all.
+A blocked push is not a reason to skip recording. Commit locally and say the push is pending. The only situation with nothing to do is no repository at all — and then say that, at the moment it matters.
 
-**With nowhere to record, do not start work that produces findings.** Say what is needed and stop there:
+## 12a. Decision records
 
-> Before this: there is nowhere to keep what we work out. Name a repository — an
-> empty one is fine — and I will set the folder up as its working copy. Analysis
-> done now is lost when this conversation ends, and the next session starts from
-> nothing, so it is not worth doing yet.
+One form for every change and experiment, in `decisions/YYYY-MM-DD-<slug>.md` of the state repository:
 
-Do not offer to proceed anyway as an equal option. Presented as a choice, it is the one people take, and it makes the losing path the easy one.
+```yaml
+id: D-2026-08-01-001
+project: project-a
+type: action            # or experiment
+action: "consolidated 137 ad sets into 4"
+metric: "JobForm Lead · Meta insights · 30d window ending -3d"
+baseline: "CPL $4.89 · frequency 5.38 · CTR 2.41%"
+expected: "CPL below $3.79 at unchanged spend"
+applied_by: human       # or agent, or human (detected)
+applied_at: 2026-08-01
+verify_after: 2026-08-15
+outcome: null           # filled at verification, never before
+supersedes: null        # id of the decision this overturns
+intent: stated          # or pending — goal not yet known, blocks any verdict
+```
 
-**The exception is a lookup.** A question answered by reading a number — what was spent yesterday, which campaigns are running — produces nothing worth recording, so nothing is lost by answering it. Use the same test as above: if the answer would meet the recording criteria, it needs somewhere to go first. If it would not, just answer.
+Rules that make the record usable later:
+
+- **`metric` is mandatory and names the exact counter, source and window.** Three counters of one quantity disagreed by 2.6× on the day this form was designed (`lead` 2,277 / `JobForm Lead` 1,009 / CRM 876). A baseline without a metric definition is noise.
+- **`baseline` is taken on a matured window only** — ending 3+ days ago. Fresh numbers get rewritten by attribution backfill, and a baseline that rewrites itself is not a baseline.
+- **Take the baseline BEFORE the change** when the change goes through a session. For changes detected after the fact, the baseline is yesterday's snapshot and `applied_by` is `human (detected)`.
+- **`intent: pending` blocks the verdict.** A record whose goal nobody stated cannot be judged succeeded or failed. Pending intents are raised in the daily brief and once per interactive session, through the surface's question tool.
 
 ## 13. Writing something down is not finishing
 
