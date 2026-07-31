@@ -35,7 +35,11 @@ Pulling matters more than it looks: another person may have recorded findings, r
 
 Use the surface's question tool, the one that renders a prompt with selectable answers and a free-text field. Prose asks get read as commentary and skipped; this one has to be answered before anything else is worth doing, so it must look like a question.
 
-Where the GitHub connector is available, list the repositories it can reach and offer them as choices — picking beats typing, and a typo in a repository name produces a confusing failure several steps later. Always leave a free-text option: the repository may not exist yet, or may live somewhere the connector cannot see.
+**The answer is an address, so free text is mandatory.** Whatever question mechanism this surface has, the person must be able to type `owner/repo`. A prompt offering only fixed choices is worse than no prompt: they can see they are being asked and have no way to answer.
+
+Ready-made choices are a convenience on top, not a substitute. Where the GitHub connector can list reachable repositories, offer them — picking avoids a typo that surfaces as a confusing failure several steps later — but the typing option stays regardless, because the repository may not exist yet or may live where the connector cannot see it.
+
+If the mechanism here cannot take free text, do not use it. Ask in prose and say plainly that the answer is just typed into the conversation.
 
 Phrase it so the consequence is visible in the question itself, not in a footnote:
 
