@@ -28,7 +28,11 @@ For Meta, report **how many ad accounts are reachable and their names**. One acc
 Nobody should have to configure an address. Work through these in order and stop at the first that answers:
 
 1. **A connected folder.** Read its git remote. A working copy is the repository, and the answer is already on disk.
-2. **The GitHub connector.** Search the accessible repositories for a file named `.ads-state` at the root. That marker exists for exactly this. One match is the answer.
+2. **The GitHub connector.** List the repositories this token can reach, most recently pushed first, and check each for a root file named `.ads-state`. Stop at the first match. That marker exists for exactly this.
+
+   Usually this is one call and one check: access is granted per repository, so a teammate can typically reach one or two. Do not rely on code search — it does not index every file and behaves differently on private repositories. Listing and checking is slower in principle and correct in practice.
+
+   If the list is long enough that checking every entry is wasteful, say what you are doing and check the plausible ones first rather than silently giving up.
 3. **An address written in the session's instructions.** Honour it if present.
 4. **Nothing found.**
 

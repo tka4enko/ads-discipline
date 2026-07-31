@@ -169,7 +169,13 @@ There are two ways to write. Which one applies depends on what this session has,
 
 **With the GitHub connector** — commit through it directly. There is no local file and no script: the write is the commit. This is the path for anyone without a clone, and it is the simpler one.
 
-**With the folder connected** — write the file, then commit it in the same turn. If the repository provides a save script, use it; it exists because it also pulls first, and two machines writing without pulling will overwrite each other. Otherwise commit and push with git directly. Either way, verify it landed: an unpushed commit is still one disk.
+**With the folder connected** — write the file, then in the same turn run:
+
+```
+ads-save "what was recorded and why"
+```
+
+It ships with this plugin and is on the path while the plugin is enabled, so the behaviour does not depend on what a particular repository happens to provide. It pulls before pushing — two machines writing without pulling overwrite each other — and it fails loudly rather than reporting a save that did not land. A failed push means the write failed; say so.
 
 **With neither** — findings cannot be recorded. Say so plainly rather than writing into the void: work done in this session will be lost and the next one will repeat it.
 
@@ -192,3 +198,15 @@ When a skill takes over, name it in the first line: `ads:sharpen` — and then t
 Not for tidiness. Several plugins here answer similar questions, and an answer whose author is unknown cannot be judged, compared or fixed. If a skill produced a bad recommendation and nobody can tell which one ran, the fault has nowhere to go.
 
 The same applies to interrogation: before the first question, say what is being established and roughly how many questions it will take. Being asked three questions without knowing why reads as stalling; being told "establishing what counts as a result here, about three questions" does not.
+
+## 15. Never hardcode a host path
+
+A session's shell may not share the filesystem you can see. Cowork runs one in a VM where only the connected folder is mounted, at a path containing that session's own id — so it differs every session and bears no relation to where the folder lives on the machine.
+
+Consequences, all of them load-bearing:
+
+- **Find the root, do not assume it.** `git rev-parse --show-toplevel` from the current directory. Never a path beginning `/Users`, `/home` or `C:\`.
+- **Never store an absolute path.** Not in a finding, not in a gap, not in an instruction to another session. It will be wrong the next time and wrong for everyone else.
+- **Anything a session must reach lives under the connected folder.** A sibling directory on the host does not exist for it. If a file needs to be produced and used, produce it inside.
+
+When something turns out to be unreachable, check this before concluding a feature is missing. A path that is not mounted fails exactly like a capability that is absent, and the wrong diagnosis costs hours.
