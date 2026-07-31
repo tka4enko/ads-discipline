@@ -31,18 +31,19 @@ Configuration is the wrong shape for this. The folder someone connects should si
 
 Pulling matters more than it looks: another person may have recorded findings, retracted one, or closed a gap since this copy was last updated. Report how far behind it was — "3 new findings since this copy last synced" is worth saying, and silence there reads as "nothing changed".
 
-**If the connected folder is empty**, ask once:
+**If the connected folder is empty**, ask once — **as an interactive question, not as a line of prose.**
 
-```
-This folder is empty, so nothing gets remembered between sessions yet.
+Use the surface's question tool, the one that renders a prompt with selectable answers and a free-text field. Prose asks get read as commentary and skipped; this one has to be answered before anything else is worth doing, so it must look like a question.
 
-Name a git repository to keep findings in — an empty one is fine — and
-I will set this folder up as its working copy. One question, once:
-after that, everything written here is committed there and the next
-session picks up where this one stopped.
+Where the GitHub connector is available, list the repositories it can reach and offer them as choices — picking beats typing, and a typo in a repository name produces a confusing failure several steps later. Always leave a free-text option: the repository may not exist yet, or may live somewhere the connector cannot see.
 
-    owner/repo
-```
+Phrase it so the consequence is visible in the question itself, not in a footnote:
+
+> This folder is empty, so nothing said here is remembered after the
+> conversation ends. Which repository should keep the findings? An empty
+> one is fine — I will set the folder up as its working copy.
+
+If no question tool exists on this surface, ask in prose — but put it above everything else, alone, and offer nothing beside it.
 
 Given an answer, clone it into the folder. From then on the previous case applies: the folder is a working copy and the address lives in its remote, where git already keeps it.
 
@@ -64,7 +65,21 @@ Establish which write path exists and say which one applies, because they must n
 
 ## Output
 
-One block, in this order, and nothing else:
+**If something blocks work, it goes first — before the status block, not after it.** A question in the last line of a long report is a question nobody answers: the reader has already got what looks like an answer by then.
+
+```
+Before anything else: this folder is empty, so nothing said here gets
+remembered. Name a repository to keep findings in — an empty one is fine —
+and I will set the folder up as its working copy.
+
+    owner/repo
+
+Everything below is what I can see meanwhile.
+```
+
+Then the status block. One question, at the top, in its own paragraph, and nothing offered beside it.
+
+Otherwise, one block, in this order, and nothing else:
 
 ```
 READY
