@@ -48,9 +48,7 @@ Given an answer, clone it into the folder. From then on the previous case applie
 
 If the repository is empty, create `findings/`, `gaps.md` and an `.ads-state` marker at the root, and commit. An empty repository is the expected starting point, not an error.
 
-**If there is no folder at all** — the GitHub connector is the other path. List reachable repositories, most recently pushed first, and check each for a root `.ads-state`. Access is granted per repository, so this is usually one call and one check. Do not rely on code search: it does not index every file and behaves differently on private repositories.
-
-**If nothing is reachable and nothing can be created** — say so and work from live data, noting each time that nothing is being recorded and the next session will repeat this work.
+**If there is no folder at all** — say so. Answer from live data and note each time that nothing is being recorded. Do not go searching for a repository: without a folder there is nowhere to put the answer, so it would have to be asked again every session.
 
 **Never guess an address.** More than one candidate means ask which. Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else.
 
@@ -60,7 +58,7 @@ If the repository is empty, create `findings/`, `gaps.md` and an `.ads-state` ma
 
 Establish which write path exists and say which one applies, because they must not be mixed:
 
-- **folder connected** → files are written locally, then committed with `ads-save`, which ships with this plugin and is on the path while it is enabled
+- **folder connected** → files are written locally, then committed and pushed with git in the same turn
 - **git connector, write access** → commits go through the connector, no local file
 - **neither** → findings cannot be recorded. Say this plainly: work done in this session will be lost, and the next session will repeat it
 

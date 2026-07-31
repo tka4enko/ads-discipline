@@ -146,28 +146,47 @@ The same applies to configuration that was never done. A session with no state r
 
 `setup` exists for the deliberate version of this check. Do not wait for it to be invoked.
 
-## 11. Where the state lives — the folder is the answer
+## 11. Where the state lives — the connected folder is it
 
-Findings, gaps and decisions live in a git repository. **The connected folder should simply be its working copy**, and then there is nothing to configure, store or look up.
+Findings, gaps and decisions live in a git repository, and **the connected folder is its working copy**. There is nothing else to configure, store or search for.
 
-1. **Folder is a working copy** — read its remote. Normal case, no setup.
-2. **Folder is empty** — ask once for a repository, clone it in, and case 1 applies from then on. An empty repository is a fine starting point: create `findings/`, `gaps.md` and an `.ads-state` marker and commit.
-3. **No folder** — the GitHub connector. Check reachable repositories for a root `.ads-state`.
-4. **Nothing reachable** — say so, work from live data, and note each time that nothing is being recorded.
+**Folder is a working copy** — pull, then work. Normal case, no setup.
 
-**Refresh before reading, not only before writing.** A working copy is a snapshot of whenever it was last pulled. Someone else may have recorded a finding yesterday, retracted one this morning, or closed a gap you are about to report as open — and none of that is visible until you pull.
+**Folder is empty** — ask once for a repository address, clone it in, and the normal case applies from then on. An empty repository is a fine starting point: create `findings/`, `gaps.md` and commit.
 
-So on a folder path, `git pull --rebase` before reading the archive, at the start of the work rather than at the end. Reading stale history is the failure that produces confident answers contradicting a decision already taken, and it looks identical to a correct answer.
+**No folder** — say so. Answer from live data, and note each time that nothing is being recorded and the next session will repeat this work.
 
-The connector path has no equivalent problem: it reads GitHub directly and is always current. The folder is faster and can be stale; the connector is slower and cannot. Say which one this session used when the answer leans on history.
+That is the whole rule. Do not search for the repository, do not infer it, and do not push it into a setting: one question, once, and git keeps the answer in the remote where it cannot drift from what the folder actually is.
 
-Asking once and cloning beats storing an address somewhere: git already keeps the address, in the remote, and it cannot drift from what the folder actually is.
+**Pull before reading, not only before writing.** A working copy is a snapshot of whenever it was last pulled. Someone else may have recorded a finding yesterday, retracted one this morning, or closed a gap you are about to report as open — none of it visible until you pull. Report how far behind the copy was; silence there reads as "nothing changed".
 
-**Never guess.** More than one candidate means ask which — reading the wrong repository is worse than reading none, because it produces history that looks authoritative and belongs to somebody else.
+**Never guess an address.** Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else.
 
-**Do not push this into a global setting.** An address belonging to one project has no business applying to every unrelated task, and someone asked to configure it globally is right to refuse.
+## 12. Record without being asked
 
-## 12. Writing something down is not finishing
+Nobody will remember to tell you to write things down, and nobody should have to. **Decide for yourself what is worth keeping, and keep it in the same turn you established it.**
+
+Record when any of these is true:
+
+- **a number that will be quoted again** — spend over a period, cost per result, a count from the CRM. Someone will ask for it next week and reconstructing it costs the same queries again
+- **a conclusion that changes a decision** — what to pause, what to test, what to stop paying for
+- **something previously recorded turns out to be wrong** — this one matters most. A retraction that stays in conversation lets the archive keep serving a conclusion everyone has already abandoned
+- **a gap** — something that could not be established, and what it would take
+- **it took more than a couple of queries to work out.** That effort is the thing being saved
+
+Do not record a lookup, a restatement of what the interface already shows, or an answer that changed nothing. An archive of everything is searched by nobody.
+
+**Say what you recorded and where**, in one line, so it is visible rather than silent:
+
+> Recorded: `findings/2026-08-01-instagram-share.md` — committed `a1b2c3d`
+
+**When there is nowhere to record**, say that at the moment it matters, not at the end:
+
+> This is worth keeping, and there is nowhere to put it — no folder is connected and no repository is reachable. Say where, and I will record it; otherwise this analysis is lost when the conversation ends.
+
+Silence in that situation is the worst outcome available: the work looks done, and the next session repeats it from nothing.
+
+## 13. Writing something down is not finishing
 
 The connected folder is the working copy of the state repository. Writing a file there puts it on one disk, in one place, until the next overwrite. It is not saved and no other session will find it.
 
@@ -175,13 +194,13 @@ There are two ways to write. Which one applies depends on what this session has,
 
 **With the GitHub connector** — commit through it directly. There is no local file and no script: the write is the commit. This is the path for anyone without a clone, and it is the simpler one.
 
-**With the folder connected** — write the file, then in the same turn run:
+**With the folder connected** — write the file, then commit and push it in the same turn:
 
 ```
-ads-save "what was recorded and why"
+git add -A && git commit -m "what was recorded and why" && git pull --rebase && git push
 ```
 
-It ships with this plugin and is on the path while the plugin is enabled, so the behaviour does not depend on what a particular repository happens to provide. It pulls before pushing — two machines writing without pulling overwrite each other — and it fails loudly rather than reporting a save that did not land. A failed push means the write failed; say so.
+Pull before pushing: two machines writing without pulling overwrite each other. If the push fails, the write failed — say so plainly rather than reporting a save that did not land. If the repository provides its own script for this, use it.
 
 **With neither** — findings cannot be recorded. Say so plainly rather than writing into the void: work done in this session will be lost and the next one will repeat it.
 
@@ -189,7 +208,7 @@ Do not batch this up for later. The reason to save immediately is not tidiness: 
 
 **Every record names who wrote it.** More than one person writes here, and a finding whose author is unknown cannot be asked about. One line at the top: who, and from which surface.
 
-## 13. Learning runs both ways
+## 14. Learning runs both ways
 
 **The system learns:** confirmed rules go into `playbook.md` — only through a human, only on ≥3 independent confirmations, none of them flagged unreliable, with a 6-month expiry.
 
@@ -197,7 +216,7 @@ Do not batch this up for later. The reason to save immediately is not tidiness: 
 
 Neither side learns from the other's guesses.
 
-## 14. Say which skill is running
+## 15. Say which skill is running
 
 When a skill takes over, name it in the first line: `ads:sharpen` — and then the answer.
 
@@ -205,7 +224,7 @@ Not for tidiness. Several plugins here answer similar questions, and an answer w
 
 The same applies to interrogation: before the first question, say what is being established and roughly how many questions it will take. Being asked three questions without knowing why reads as stalling; being told "establishing what counts as a result here, about three questions" does not.
 
-## 15. Never hardcode a host path
+## 16. Never hardcode a host path
 
 A session's shell may not share the filesystem you can see. Cowork runs one in a VM where only the connected folder is mounted, at a path containing that session's own id — so it differs every session and bears no relation to where the folder lives on the machine.
 
