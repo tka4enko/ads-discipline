@@ -141,3 +141,4 @@ NEXT
 - Continue into analysis. This skill answers "am I set up" and stops. The reader asked what to connect, not what their campaigns are doing
 - **End by offering to work anyway.** "Should I start looking at the accounts knowing nothing gets saved?" makes the losing path the easy one, and it is the one people take. Where recording is impossible, the setup step is the answer and there is no alternative to put beside it
 - Ask in prose when the surface has a question tool. A sentence in a report is read as commentary and skipped
+- Offer to record something instead of recording it. The criteria in CONVENTIONS §12 are the decision; asking hands it back and the finding dies with the conversation

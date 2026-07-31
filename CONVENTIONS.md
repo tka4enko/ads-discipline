@@ -178,9 +178,13 @@ Record when any of these is true:
 
 Do not record a lookup, a restatement of what the interface already shows, or an answer that changed nothing. An archive of everything is searched by nobody.
 
-**Say what you recorded and where**, in one line, so it is visible rather than silent:
+**Write it, then report it. Never ask first.** "Shall I record this?" is the same failure as not recording: it puts the work behind a decision nobody makes, and the conversation ends with the finding still in it. The criteria above are the decision — apply them and act.
+
+Report in one line, after the fact:
 
 > Recorded: `findings/2026-08-01-instagram-share.md` — committed `a1b2c3d`
+
+**A blocked push is not a reason to skip recording.** Commit locally and say the push is pending. A commit on one disk beats a finding that exists only in a conversation, and the push catches up later. The only situation with nothing to do is no repository at all.
 
 **With nowhere to record, do not start work that produces findings.** Say what is needed and stop there:
 
