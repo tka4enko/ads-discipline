@@ -23,46 +23,44 @@ The output is a checklist the reader can act on without knowing how any of it wo
 
 For Meta, report **how many ad accounts are reachable and their names**. One account visible where the portfolio has four is the most common silent failure, and it produces confident answers built on a quarter of the picture.
 
-### 2. State repository — find it, do not ask for it
+### 2. State repository — make the folder be it
 
-Nobody should have to configure an address. Work through these in order and stop at the first that answers:
+Configuration is the wrong shape for this. The folder someone connects should simply *be* the working copy, and then nothing needs to be configured, stored or looked up ever again.
 
-1. **A connected folder.** Read its git remote. A working copy is the repository, and the answer is already on disk.
-2. **The GitHub connector.** List the repositories this token can reach, most recently pushed first, and check each for a root file named `.ads-state`. Stop at the first match. That marker exists for exactly this.
+**If the connected folder is already a git working copy** — pull first, then read its remote. This is the normal case and it needs no setup.
 
-   Usually this is one call and one check: access is granted per repository, so a teammate can typically reach one or two. Do not rely on code search — it does not index every file and behaves differently on private repositories. Listing and checking is slower in principle and correct in practice.
+Pulling matters more than it looks: another person may have recorded findings, retracted one, or closed a gap since this copy was last updated. Report how far behind it was — "3 new findings since this copy last synced" is worth saying, and silence there reads as "nothing changed".
 
-   If the list is long enough that checking every entry is wasteful, say what you are doing and check the plausible ones first rather than silently giving up.
-3. **An address written in the session's instructions.** Honour it if present.
-4. **Nothing found.**
-
-Only in case 4 ask — and ask *once*, in a way that does not have to be repeated:
+**If the connected folder is empty**, ask once:
 
 ```
-I could not find where this project keeps its findings.
+This folder is empty, so nothing gets remembered between sessions yet.
 
-If it has one, name the repository and I will use it from here. To stop
-being asked, put one line where this surface keeps its standing
-instructions — for a Cowork project that is its Instructions panel; in
-Claude Code it is CLAUDE.md at the project root:
+Name a git repository to keep findings in — an empty one is fine — and
+I will set this folder up as its working copy. One question, once:
+after that, everything written here is committed there and the next
+session picks up where this one stopped.
 
-    Project state: owner/repo
-
-If there is no repository yet, say so and I will work from live data,
-noting each time that nothing is being recorded.
+    owner/repo
 ```
 
-**Do not suggest global settings for this.** An address that belongs to one project has no business applying to every unrelated task.
+Given an answer, clone it into the folder. From then on the previous case applies: the folder is a working copy and the address lives in its remote, where git already keeps it.
 
-**Never guess.** Where the search returns more than one marker, list them and ask which — reading the wrong repository is worse than reading none, because it produces history that looks authoritative and belongs to somebody else.
+If the repository is empty, create `findings/`, `gaps.md` and an `.ads-state` marker at the root, and commit. An empty repository is the expected starting point, not an error.
 
-Where an address is known, confirm it is actually reachable by listing its contents. Named but unreachable is a different problem from not named, and the fixes differ: access versus configuration.
+**If there is no folder at all** — the GitHub connector is the other path. List reachable repositories, most recently pushed first, and check each for a root `.ads-state`. Access is granted per repository, so this is usually one call and one check. Do not rely on code search: it does not index every file and behaves differently on private repositories.
+
+**If nothing is reachable and nothing can be created** — say so and work from live data, noting each time that nothing is being recorded and the next session will repeat this work.
+
+**Never guess an address.** More than one candidate means ask which. Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else.
+
+**Do not suggest a global setting.** An address belonging to one project has no business applying to every unrelated task, and someone asked to configure it globally is right to refuse.
 
 ### 3. Writing
 
 Establish which write path exists and say which one applies, because they must not be mixed:
 
-- **folder connected** → files are written locally and committed with the repository's own save script
+- **folder connected** → files are written locally, then committed with `ads-save`, which ships with this plugin and is on the path while it is enabled
 - **git connector, write access** → commits go through the connector, no local file
 - **neither** → findings cannot be recorded. Say this plainly: work done in this session will be lost, and the next session will repeat it
 

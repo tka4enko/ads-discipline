@@ -146,20 +146,26 @@ The same applies to configuration that was never done. A session with no state r
 
 `setup` exists for the deliberate version of this check. Do not wait for it to be invoked.
 
-## 11. Where the state lives — find it, do not demand it
+## 11. Where the state lives — the folder is the answer
 
-Findings, gaps and decisions live in a git repository. **Its address is discovered, not configured.** Work through these in order and stop at the first that answers:
+Findings, gaps and decisions live in a git repository. **The connected folder should simply be its working copy**, and then there is nothing to configure, store or look up.
 
-1. **a connected folder** — read its git remote; a working copy is the repository
-2. **the GitHub connector** — search accessible repositories for a root file named `.ads-state`, the marker that exists for this purpose
-3. **an address in the session's standing instructions**, if one is written there
-4. **nothing found** — ask once, and say where to record the answer so the question does not recur
+1. **Folder is a working copy** — read its remote. Normal case, no setup.
+2. **Folder is empty** — ask once for a repository, clone it in, and case 1 applies from then on. An empty repository is a fine starting point: create `findings/`, `gaps.md` and an `.ads-state` marker and commit.
+3. **No folder** — the GitHub connector. Check reachable repositories for a root `.ads-state`.
+4. **Nothing reachable** — say so, work from live data, and note each time that nothing is being recorded.
 
-Never guess, and never settle for a near match. Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else. More than one marker means ask which.
+**Refresh before reading, not only before writing.** A working copy is a snapshot of whenever it was last pulled. Someone else may have recorded a finding yesterday, retracted one this morning, or closed a gap you are about to report as open — and none of that is visible until you pull.
 
-Where nothing is reachable, say so and answer from live data — stating plainly that the history was unavailable, so the reader knows the answer may repeat work or contradict a decision already taken.
+So on a folder path, `git pull --rebase` before reading the archive, at the start of the work rather than at the end. Reading stale history is the failure that produces confident answers contradicting a decision already taken, and it looks identical to a correct answer.
 
-**Do not push this into a global setting.** An address that belongs to one project has no business applying to every unrelated task, and a person asked to configure something globally is right to refuse.
+The connector path has no equivalent problem: it reads GitHub directly and is always current. The folder is faster and can be stale; the connector is slower and cannot. Say which one this session used when the answer leans on history.
+
+Asking once and cloning beats storing an address somewhere: git already keeps the address, in the remote, and it cannot drift from what the folder actually is.
+
+**Never guess.** More than one candidate means ask which — reading the wrong repository is worse than reading none, because it produces history that looks authoritative and belongs to somebody else.
+
+**Do not push this into a global setting.** An address belonging to one project has no business applying to every unrelated task, and someone asked to configure it globally is right to refuse.
 
 ## 12. Writing something down is not finishing
 
