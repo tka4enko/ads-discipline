@@ -146,23 +146,22 @@ The same applies to configuration that was never done. A session with no state r
 
 `setup` exists for the deliberate version of this check. Do not wait for it to be invoked.
 
-## 11. Where the state lives
+## 11. Where the state lives — find it, do not demand it
 
-```
-tka4enko/project-a-ads
-```
+Findings, gaps and decisions live in a git repository. **Its address is discovered, not configured.** Work through these in order and stop at the first that answers:
 
-Everything this system has established lives there — `findings/`, `gaps.md`, `docs/`. Read it before answering anything the account cannot answer on its own: what was already established, what was already retracted, what is already known to be missing.
+1. **a connected folder** — read its git remote; a working copy is the repository
+2. **the GitHub connector** — search accessible repositories for a root file named `.ads-state`, the marker that exists for this purpose
+3. **an address in the session's standing instructions**, if one is written there
+4. **nothing found** — ask once, and say where to record the answer so the question does not recur
 
-Reach it whichever way this session can:
+Never guess, and never settle for a near match. Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else. More than one marker means ask which.
 
-- **the connected folder** is a working copy of that repository — read the files directly
-- **the GitHub connector** reads the same repository without a local copy
-- **neither** — say so. Answer from live data only and state that the history was unavailable, so the reader knows the answer may repeat work or contradict a decision already made
+Where nothing is reachable, say so and answer from live data — stating plainly that the history was unavailable, so the reader knows the answer may repeat work or contradict a decision already taken.
 
-Do not go looking through other repositories. This is the only one.
+**Do not push this into a global setting.** An address that belongs to one project has no business applying to every unrelated task, and a person asked to configure something globally is right to refuse.
 
-## 11. Writing something down is not finishing
+## 12. Writing something down is not finishing
 
 The connected folder is the working copy of the state repository. Writing a file there puts it on one disk, in one place, until the next overwrite. It is not saved and no other session will find it.
 
@@ -178,7 +177,7 @@ Do not batch this up for later. The reason to save immediately is not tidiness: 
 
 **Every record names who wrote it.** More than one person writes here, and a finding whose author is unknown cannot be asked about. One line at the top: who, and from which surface.
 
-## 12. Learning runs both ways
+## 13. Learning runs both ways
 
 **The system learns:** confirmed rules go into `playbook.md` — only through a human, only on ≥3 independent confirmations, none of them flagged unreliable, with a 6-month expiry.
 
@@ -186,7 +185,7 @@ Do not batch this up for later. The reason to save immediately is not tidiness: 
 
 Neither side learns from the other's guesses.
 
-## 13. Say which skill is running
+## 14. Say which skill is running
 
 When a skill takes over, name it in the first line: `ads:sharpen` — and then the answer.
 
