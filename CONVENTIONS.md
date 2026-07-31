@@ -138,7 +138,15 @@ Where the prior attempt was **stopped**, ask why before planning a repeat. Aband
 
 State the precedent in the answer even when it is inconvenient, and especially when it is worse than the estimate you were about to give.
 
-## 10. Where the state lives
+## 10. Say what is missing before it bites
+
+Nobody reads setup documentation, and nobody should have to. When this session cannot reach something it needs, say so **at the point it matters**, with the exact action — not "connect the CRM" but which menu, roughly how long, and what it would unblock.
+
+The same applies to configuration that was never done. A session with no state repository named should say so the first time history would have helped, and print the line to add. Silence here does not read as "nothing is wrong"; it reads as "there was nothing to find", which is a different and much more expensive mistake.
+
+`setup` exists for the deliberate version of this check. Do not wait for it to be invoked.
+
+## 11. Where the state lives
 
 ```
 tka4enko/project-a-ads

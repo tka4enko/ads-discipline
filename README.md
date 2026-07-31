@@ -37,6 +37,29 @@ skill was invoked:
 Three subagents ship alongside: a retrieval-only collector, a diagnoser, and a
 judge for decisions whose cost of error is measured in months.
 
+## Connectors
+
+The plugin brings two, both official hosted MCP servers behind OAuth. Enabling
+the plugin offers the connection; the first call prompts for authorisation.
+No credentials travel with the plugin and none are stored in it.
+
+| Connector | Gives | Also needs |
+|---|---|---|
+| **Meta Ads** — `mcp.facebook.com/ads` | Campaigns, spend, creatives, audiences, pixels, conversion rules | Access to the ad accounts, granted in Meta Business Manager by whoever owns them. OAuth binds to one business portfolio — connect once per portfolio |
+| **HubSpot** — `mcp.hubspot.com/anthropic` | Contacts and deals by source: the independent count of what advertising produced | Access granted by the CRM owner |
+
+**Why the CRM matters more than it looks.** Platform-reported conversions cannot
+check themselves. A rule that stops matching a renamed page keeps returning a
+plausible number, and only an outside count reveals it. Connect both or expect
+to trust one source with no way to audit it.
+
+**Google Ads is not included and cannot be.** Its API requires a developer token
+issued per advertiser, which takes weeks. `ads:setup` reports it as a known
+long-lead gap rather than a misconfiguration.
+
+Run `ads:setup` at any point to see what is connected, what is not, and the
+exact next action for each gap.
+
 ## Install
 
 ```
