@@ -11,6 +11,17 @@ The output is a checklist the reader can act on without knowing how any of it wo
 
 ## Procedure
 
+**Work from the current directory, never a constructed path.** The connected folder is already the working directory. A path built from what the interface displays — `/Users/…`, `/home/…` — will not exist in a sandboxed shell, and the command fails with no output, which reads as an empty folder rather than a wrong path.
+
+```
+pwd                              where this actually is
+ls -la                           what is in it
+git rev-parse --show-toplevel    repository root, if any
+git remote -v                    where it points
+```
+
+Never `cd` to a path taken from a label. If a specific directory is genuinely needed, discover it first and use what `pwd` returned.
+
 **Verify, do not assume.** For each source below, make a real call. A connector that appears in a list but errors on use is not connected, and saying otherwise is worse than saying nothing.
 
 ### 1. Data sources
