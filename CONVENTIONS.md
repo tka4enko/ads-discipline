@@ -166,19 +166,13 @@ Do not go looking through other repositories. This is the only one.
 
 The connected folder is the working copy of the state repository. Writing a file there puts it on one disk, in one place, until the next overwrite. It is not saved and no other session will find it.
 
-There are two ways to write, and which one applies depends on what this session has.
+There are two ways to write. Which one applies depends on what this session has, and they must never be combined — a local file plus a connector commit is two versions of the same record.
 
-**With the folder connected** — write the file, then immediately run:
+**With the GitHub connector** — commit through it directly. There is no local file and no script: the write is the commit. This is the path for anyone without a clone, and it is the simpler one.
 
-```
-bin/save.sh "what was recorded and why"
-```
+**With the folder connected** — write the file, then commit it in the same turn. If the repository provides a save script, use it; it exists because it also pulls first, and two machines writing without pulling will overwrite each other. Otherwise commit and push with git directly. Either way, verify it landed: an unpushed commit is still one disk.
 
-That pulls, commits and pushes. If it fails the script says so loudly. Treat a failed push as the write having failed, not succeeded, and say so in the answer.
-
-**With the GitHub connector instead** — commit through the connector directly. There is no local file and no script: the write is the commit. This is the simpler path and the right one for anyone who does not want git on their machine.
-
-Never use both in one session. Writing a local file *and* committing through the connector produces two versions of the same record.
+**With neither** — findings cannot be recorded. Say so plainly rather than writing into the void: work done in this session will be lost and the next one will repeat it.
 
 Do not batch this up for later. The reason to save immediately is not tidiness: a session that ends with uncommitted work leaves the next one reading a stale archive and confidently repeating it.
 

@@ -47,6 +47,7 @@ No credentials travel with the plugin and none are stored in it.
 |---|---|---|
 | **Meta Ads** — `mcp.facebook.com/ads` | Campaigns, spend, creatives, audiences, pixels, conversion rules | Access to the ad accounts, granted in Meta Business Manager by whoever owns them. OAuth binds to one business portfolio — connect once per portfolio |
 | **HubSpot** — `mcp.hubspot.com/anthropic` | Contacts and deals by source: the independent count of what advertising produced | Access granted by the CRM owner |
+| **GitHub** — `api.githubcopilot.com/mcp/` | Reads and writes findings and gaps without a local clone — a write through it is a commit | The repository named in your project instructions, and access to it |
 
 **Why the CRM matters more than it looks.** Platform-reported conversions cannot
 check themselves. A rule that stops matching a renamed page keeps returning a

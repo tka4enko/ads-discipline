@@ -9,6 +9,11 @@
       "type": "http",
       "url": "https://mcp.hubspot.com/anthropic",
       "note": "Official HubSpot MCP server. OAuth on first use. Supplies the independent view of what advertising actually produced, which platform-reported conversions cannot check on their own."
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "note": "Official GitHub MCP server. OAuth on first use. This is how findings and gaps are read and written without a local clone: a write through this connector is a commit. Name the repository in the project instructions — the plugin does not carry an address."
     }
   }
 }
