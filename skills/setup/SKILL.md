@@ -86,6 +86,8 @@ NEXT
 
 **If everything is connected, say so in one line and stop.** Do not invent optional improvements to fill the block.
 
+**End on the question, not on a menu.** Where NEXT contains something that blocks recording, ask for exactly that and stop. Offering to continue without it turns the fix into an option, and it is the option nobody takes.
+
 ## Do not
 
 - Report a source as connected because it appears in a menu — call it

@@ -180,11 +180,16 @@ Do not record a lookup, a restatement of what the interface already shows, or an
 
 > Recorded: `findings/2026-08-01-instagram-share.md` — committed `a1b2c3d`
 
-**When there is nowhere to record**, say that at the moment it matters, not at the end:
+**With nowhere to record, do not start work that produces findings.** Say what is needed and stop there:
 
-> This is worth keeping, and there is nowhere to put it — no folder is connected and no repository is reachable. Say where, and I will record it; otherwise this analysis is lost when the conversation ends.
+> Before this: there is nowhere to keep what we work out. Name a repository — an
+> empty one is fine — and I will set the folder up as its working copy. Analysis
+> done now is lost when this conversation ends, and the next session starts from
+> nothing, so it is not worth doing yet.
 
-Silence in that situation is the worst outcome available: the work looks done, and the next session repeats it from nothing.
+Do not offer to proceed anyway as an equal option. Presented as a choice, it is the one people take, and it makes the losing path the easy one.
+
+**The exception is a lookup.** A question answered by reading a number — what was spent yesterday, which campaigns are running — produces nothing worth recording, so nothing is lost by answering it. Use the same test as above: if the answer would meet the recording criteria, it needs somewhere to go first. If it would not, just answer.
 
 ## 13. Writing something down is not finishing
 
