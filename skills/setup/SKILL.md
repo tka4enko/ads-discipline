@@ -53,12 +53,13 @@ Pulling matters more than it looks: another person may have recorded findings, r
 
 **Step 2 — build the choices from that list, and from nothing else.**
 
-Every choice is either a repository address returned in step 1, or one of exactly two fixed entries:
+Every choice is a repository address returned in step 1, plus one fixed entry:
 
 - `Other` — free text, `owner/repo`
-- `No repository yet` — nothing gets recorded, and every later answer says so
 
-Annotate each repository so the choice can be made without opening anything: whether it is empty, and whether it already contains `findings/` or `gaps.md`.
+Nothing else. Annotate each repository so the choice can be made without opening anything: whether it is empty, and whether it already contains `findings/` or `gaps.md`.
+
+**One question, one decision.** Do not attach anything else to it — not the connectors, not Google Ads, not what to do next. Those belong in the status block, which comes after. A prompt carrying several decisions gets answered on the first one and abandoned.
 
 **These are forbidden as choices, without exception:**
 
@@ -69,7 +70,7 @@ Annotate each repository so the choice can be made without opening anything: whe
 
 The test each must pass: **after this choice is selected, is the address known?** If the answer is no, the choice is a restatement of the question and must not appear.
 
-**If step 1 fails** — say so in one line and offer only `Other` and `No repository yet`. Do not invent placeholder choices to fill the list, and do not offer connecting anything.
+**If step 1 fails** — say so in one line and offer `Other` alone. Do not invent placeholder choices to fill the list, and do not offer connecting anything.
 
 **The question text carries the consequence:**
 
