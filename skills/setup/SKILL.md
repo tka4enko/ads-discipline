@@ -47,28 +47,33 @@ Configuration is the wrong shape for this. The folder someone connects should si
 
 Pulling matters more than it looks: another person may have recorded findings, retracted one, or closed a gap since this copy was last updated. Report how far behind it was — "3 new findings since this copy last synced" is worth saying, and silence there reads as "nothing changed".
 
-**If the connected folder is empty**, ask once — **always through the surface's question tool, never in prose.** A sentence in a report gets read as commentary and skipped. This has to be answered before anything else is worth doing, so it has to appear as a question.
+**If the connected folder is empty:**
 
-Build the choices like this:
+**Step 1 — get the list first.** Call the GitHub connector and retrieve the repositories it can reach. Do this *before* composing the question. Do not skip it because the answer seems obvious, and do not proceed on the assumption that no list is available.
 
-**With the GitHub connector** — list the repositories it can reach and offer them as choices. Each choice is a real address, so selecting one is a complete answer. Put the likeliest first: most recently pushed, and anything already containing `findings/` or an `.ads-state` marker.
+**Step 2 — build the choices from that list, and from nothing else.**
 
-**Without the connector** — the question still appears, with two choices only:
+Every choice is either a repository address returned in step 1, or one of exactly two fixed entries:
 
-- *Type the address* — free text, `owner/repo`
-- *No repository yet* — nothing is recorded, and every answer will say so
+- `Other` — free text, `owner/repo`
+- `No repository yet` — nothing gets recorded, and every later answer says so
 
-Do not offer "connect GitHub" as a choice. Selecting it produces no answer: it sends the person to a settings screen and ends the exchange, so they come back to the same question having gained nothing. Mention in the question text that connecting GitHub would turn this into a pick-list — as information, not as something selectable.
+Annotate each repository so the choice can be made without opening anything: whether it is empty, and whether it already contains `findings/` or `gaps.md`.
 
-**Every choice must end the question.** After selecting it, the answer exists — either because the choice was the address, or because it settled the matter ("no repository yet" settles it: nothing gets recorded).
+**These are forbidden as choices, without exception:**
 
-A choice that hands back a task fails this. "Use an existing repo" still needs the address afterwards. "Connect GitHub" sends the person elsewhere and returns them to the same prompt. Both read as a broken flow, and both are the same mistake: describing an intention instead of supplying an answer.
+- "Point to a GitHub repo" — which one? The question is unanswered and gets asked again
+- "Use this folder locally" — a folder is not a repository; nothing is recorded
+- "Connect GitHub" — sends the person to a settings screen and returns them here
+- "Use an existing repo" — the address is still missing afterwards
 
-**Free text is always available.** The repository may not exist yet, or may live where the connector cannot see it. A prompt offering only fixed choices is worse than none — the person can see they are being asked and has no way to answer.
+The test each must pass: **after this choice is selected, is the address known?** If the answer is no, the choice is a restatement of the question and must not appear.
 
-Put the consequence inside the question, not beneath it:
+**If step 1 fails** — say so in one line and offer only `Other` and `No repository yet`. Do not invent placeholder choices to fill the list, and do not offer connecting anything.
 
-> This folder is empty, so nothing said here survives the conversation. Which repository should keep the findings? An empty one is fine — I will set the folder up as its working copy.
+**The question text carries the consequence:**
+
+> This folder is empty, so nothing found here survives the conversation. Which repository should keep the findings? An empty one is fine.
 
 **If there is no folder at all** — say so. Answer from live data and note each time that nothing is being recorded. Do not go searching for a repository: without a folder there is nowhere to put the answer, so it would have to be asked again every session.
 
