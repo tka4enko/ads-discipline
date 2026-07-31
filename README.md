@@ -1,29 +1,60 @@
 # ads-discipline
 
-A Claude plugin for working on paid advertising accounts without a full-time
-analyst — for people who have to act on numbers they cannot personally audit.
+A Claude plugin that makes ad spend **verifiable** for people running paid
+advertising without a full-time analyst: every number carries a source, every
+change a baseline, every promise a verification date.
 
-It is not a reporting tool. It exists to make an answer **checkable**.
+It does not optimise campaigns. It makes every claim about them checkable —
+and every failure impossible to miss. Built against one failure mode: an
+analyst who spent the budget, promised results, and left nothing that could
+be verified.
 
-## What it changes
+## What it can do
 
-Once installed, every answer follows a few rules that hold whether or not a
-skill was invoked:
+**Tell knowledge from guesswork, in every answer.** Each figure is labelled
+FACT / SIGNAL / HYPOTHESIS / CANNOT SAY; a label is never upgraded without new
+data; fresh numbers inside an open attribution window are never FACT; no
+invented benchmarks; no agreeing with you against the data.
 
-- **Each claim is labelled** — FACT, SIGNAL, HYPOTHESIS or CANNOT SAY. A label
-  is never upgraded without new data, and confident phrasing is not evidence.
-- **Missing data is named, not filled in** — what is missing, where it could
-  come from, what it would cost, what it would unlock.
-- **Blind spots come before numbers** — what is visible, what is not, what is
-  unreliable, stated first.
-- **No invented benchmarks.** A conventional threshold is called conventional,
-  not measured.
-- **It does not agree by default.** Where the data contradicts what you assume,
-  it says so and shows the numbers.
-- **It checks whether you already tried this.** Before any forward-looking
-  answer, it looks for the earlier attempt — a measured precedent in your own
-  account beats a remembered industry range, and an abandoned test is a question
-  before it is a data point.
+**State what it does not know — before what it does.** Reports open with blind
+spots: visible, not visible, unreliable. Missing data becomes four lines — what,
+where from, at what effort, unblocking what — in a priced register of gaps.
+
+**Check the measurement before the conclusions.** Whether conversion counters
+still fire, compared against their neighbours on the same pixel; fragile rules
+(exact-URL matches, temporary domains); optimisation events that contradict the
+campaign's stated purpose; platform counts reconciled against the CRM.
+
+**Remember — and know what it remembers.** Findings, decisions and gaps live in
+a git repository; the next session starts from them, not from zero. A retracted
+conclusion gets a forward pointer, so the archive never serves stale claims as
+current. Before any plan it checks whether this was already tried: a measured
+precedent in your own account beats a market estimate.
+
+**Give a lever instead of a promise.** A daily snapshot of what nothing can
+recover retroactively — targeting, attribution settings, counter rules. A
+hand-made change in the ads manager gets detected, with its baseline taken from
+yesterday's snapshot. A change without a stated goal gets a question, not
+silence. Verification dates come due on their own.
+
+**Interrogate until testable.** "Who is this campaign for" is asked with options
+derived from the actual settings; a mismatch between a campaign's name and its
+configuration is a finding; a goal is not accepted without a metric, a number,
+a deadline — and the day of the month when it becomes clear the plan is missed.
+
+**Explain without jargon**, on your own numbers: what a metric is, why it moves,
+which decision depends on it, what to look at next.
+
+**Install without expertise.** `ads:setup` verifies every source by calling it,
+names the single next action for each gap, and asks its one blocking question
+as a question — not as a sentence at the bottom of a report.
+
+## What it deliberately does not do
+
+- **Change campaigns.** It reads. Edits are made by people.
+- **Decide.** It finds and verifies; decisions stay yours.
+- **Replace checking.** It makes checking possible in one query — every claim
+  names its source and period.
 
 ## Skills
 

@@ -1,7 +1,7 @@
 {
   "name": "ads",
-  "description": "Orientation and control for paid advertising accounts. Establishes what a campaign is for, what counts as a result, and whether that result is still being counted at all.",
-  "version": "0.2.25",
+  "description": "Makes ad spend verifiable for people without an analyst: every number carries a source, every change a baseline, every promise a verification date. It does not optimise campaigns — it makes every claim about them checkable, and every failure impossible to miss.",
+  "version": "0.2.26",
   "author": {
     "name": "Sasha Tkachenko",
     "email": "sasha.tkachenko@markupus.com"
