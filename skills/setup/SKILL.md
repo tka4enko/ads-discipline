@@ -42,29 +42,25 @@ Configuration is the wrong shape for this. The folder someone connects should si
 
 Pulling matters more than it looks: another person may have recorded findings, retracted one, or closed a gap since this copy was last updated. Report how far behind it was — "3 new findings since this copy last synced" is worth saying, and silence there reads as "nothing changed".
 
-**If the connected folder is empty**, ask once — **as an interactive question, not as a line of prose.**
+**If the connected folder is empty**, ask once — **always through the surface's question tool, never in prose.** A sentence in a report gets read as commentary and skipped. This has to be answered before anything else is worth doing, so it has to appear as a question.
 
-Use the surface's question tool, the one that renders a prompt with selectable answers and a free-text field. Prose asks get read as commentary and skipped; this one has to be answered before anything else is worth doing, so it must look like a question.
+Build the choices like this:
 
-**The answer is an address, so free text is mandatory.** Whatever question mechanism this surface has, the person must be able to type `owner/repo`. A prompt offering only fixed choices is worse than no prompt: they can see they are being asked and have no way to answer.
+**With the GitHub connector** — list the repositories it can reach and offer them as choices. Each choice is a real address, so selecting one is a complete answer. Put the likeliest first: most recently pushed, and anything already containing `findings/` or an `.ads-state` marker.
 
-**Every offered choice must be a complete answer.** Only real addresses, listed from the GitHub connector, qualify. Never offer a choice that describes an intention — "use an existing repo", "create a new one" — because selecting it advances nothing and the address still has to be asked for afterwards, which is the same question twice and reads as a broken flow.
+**Without the connector** — the question still appears. There is nothing to list, so offer these instead:
 
-If the connector cannot list repositories, offer no choices at all. Ask for the address as free text and stop there.
+- *Connect GitHub and pick from a list* — explains why there are no names to show and what connecting would give
+- *Type the address* — free text, `owner/repo`
+- *No repository yet* — nothing is recorded, and every answer says so
 
-If the mechanism here cannot take free text, do not use it. Ask in prose and say plainly that the answer is just typed into the conversation.
+**Never offer a choice that is not a complete answer.** "Use an existing repo" advances nothing: the address still has to be asked for afterwards, so the same question gets asked twice and the flow reads as broken. Either the choice carries the address, or it carries an action that produces one.
 
-Phrase it so the consequence is visible in the question itself, not in a footnote:
+**Free text is always available.** The repository may not exist yet, or may live where the connector cannot see it. A prompt offering only fixed choices is worse than none — the person can see they are being asked and has no way to answer.
 
-> This folder is empty, so nothing said here is remembered after the
-> conversation ends. Which repository should keep the findings? An empty
-> one is fine — I will set the folder up as its working copy.
+Put the consequence inside the question, not beneath it:
 
-If no question tool exists on this surface, ask in prose — but put it above everything else, alone, and offer nothing beside it.
-
-Given an answer, clone it into the folder. From then on the previous case applies: the folder is a working copy and the address lives in its remote, where git already keeps it.
-
-If the repository is empty, create `findings/`, `gaps.md` and an `.ads-state` marker at the root, and commit. An empty repository is the expected starting point, not an error.
+> This folder is empty, so nothing said here survives the conversation. Which repository should keep the findings? An empty one is fine — I will set the folder up as its working copy.
 
 **If there is no folder at all** — say so. Answer from live data and note each time that nothing is being recorded. Do not go searching for a repository: without a folder there is nowhere to put the answer, so it would have to be asked again every session.
 
