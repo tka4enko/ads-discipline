@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "meta-ads": {
+      "type": "http",
+      "url": "https://mcp.facebook.com/ads",
+      "note": "Official Meta Ads MCP server. OAuth on first use, tied to one business portfolio — connect once per portfolio. Needs access to the ad accounts themselves, granted separately in Meta Business Manager."
+    },
+    "hubspot": {
+      "type": "http",
+      "url": "https://mcp.hubspot.com/anthropic",
+      "note": "Official HubSpot MCP server. OAuth on first use. Supplies the independent view of what advertising actually produced, which platform-reported conversions cannot check on their own."
+    }
+  }
+}
