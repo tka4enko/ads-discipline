@@ -23,34 +23,36 @@ The output is a checklist the reader can act on without knowing how any of it wo
 
 For Meta, report **how many ad accounts are reachable and their names**. One account visible where the portfolio has four is the most common silent failure, and it produces confident answers built on a quarter of the picture.
 
-### 2. State repository
+### 2. State repository — find it, do not ask for it
 
-This plugin ships no repository address. Find it in this order:
+Nobody should have to configure an address. Work through these in order and stop at the first that answers:
 
-1. the project instructions for this session
-2. a connected folder — a working copy is the repository
-3. neither
+1. **A connected folder.** Read its git remote. A working copy is the repository, and the answer is already on disk.
+2. **The GitHub connector.** Search the accessible repositories for a file named `.ads-state` at the root. That marker exists for exactly this. One match is the answer.
+3. **An address written in the session's instructions.** Honour it if present.
+4. **Nothing found.**
 
-**If neither, say so and print the line to add**, with the placeholder visible rather than guessed:
+Only in case 4 ask — and ask *once*, in a way that does not have to be repeated:
 
 ```
-No state repository is named for this session.
+I could not find where this project keeps its findings.
 
-Add to your project instructions (Cowork: Project → Instructions;
-Claude Code: CLAUDE.md at the project root):
+If it has one, name the repository and I will use it from here. To stop
+being asked, put one line where this surface keeps its standing
+instructions — for a Cowork project that is its Instructions panel; in
+Claude Code it is CLAUDE.md at the project root:
 
     Project state: owner/repo
-    findings/, gaps.md and docs/ live there — what has been established
-    and what was retracted. Read it before answering; record new
-    findings there.
 
-Until then answers use live data only, and will not know what has
-already been established, tried, or ruled out.
+If there is no repository yet, say so and I will work from live data,
+noting each time that nothing is being recorded.
 ```
 
-**Never guess a repository.** Reading the wrong one is worse than reading none: it produces history that looks authoritative and belongs to someone else.
+**Do not suggest global settings for this.** An address that belongs to one project has no business applying to every unrelated task.
 
-If an address is named, confirm it is actually reachable — list its contents. Named but unreachable is a different problem from not named, and the fix differs: access versus configuration.
+**Never guess.** Where the search returns more than one marker, list them and ask which — reading the wrong repository is worse than reading none, because it produces history that looks authoritative and belongs to somebody else.
+
+Where an address is known, confirm it is actually reachable by listing its contents. Named but unreachable is a different problem from not named, and the fixes differ: access versus configuration.
 
 ### 3. Writing
 
