@@ -152,7 +152,9 @@ Findings, gaps and decisions live in a git repository, and **the connected folde
 
 **Folder is a working copy** — pull, then work. Normal case, no setup.
 
-**Folder is empty** — ask once for a repository address, clone it in, and the normal case applies from then on. An empty repository is a fine starting point: create `findings/`, `gaps.md` and commit.
+**Folder is empty** — ask once for a repository address, then try to clone. In a cloud session this usually fails: an authorised GitHub connector reaches the API, but puts no credentials in the shell, so `git` cannot clone a private repository. That is a property of the sandbox, not a fault. When it happens and the connector works, use the connector for everything and leave the folder unused. An empty repository is a fine starting point either way: create `findings/`, `gaps.md` and commit.
+
+**Never ask for a token, a password or an SSH key.** They belong to the person, not to a session, and the connector exists precisely so they are never needed.
 
 **No folder** — say so. Answer from live data, and note each time that nothing is being recorded and the next session will repeat this work.
 
