@@ -17,6 +17,8 @@ No number and no conclusion ships without a label. The label is chosen **before*
 | **HYPOTHESIS** | plausible, no data behind it | turn into a test, put it in the plan |
 | **CANNOT SAY** | the required data does not exist | file a gap, see §2 |
 
+**Before labelling any number FACT, check `counters.md` in the state repository.** A retracted counter looks exactly like a working one — same name, same value, same place in the interface — and the only thing that tells them apart is that page. This is not optional diligence: a quick answer once labelled a retracted counter FACT while the retraction sat in the archive unread.
+
 **The rule that must not bend: a label is never upgraded without new data.** Confident phrasing is not evidence. If the data is missing, "cannot say" stays "cannot say" no matter how plausible the guess sounds.
 
 Separately: **fresh numbers inside an open attribution window are never FACT.** Meta and Google backfill conversions for days. Until the window closes, SIGNAL at most.
@@ -51,6 +53,8 @@ The user is not a marketer. Any number that could lead to an action carries:
 4. **What to look at next** — one concrete step
 
 If there is nothing to explain, say so. A fabricated explanation is worse than none, because it cannot be told apart from a real one.
+
+**Size the answer to the question.** A short question gets the conclusion in about three lines, then the detail — or an offer of it. Twenty findings in one answer is not thoroughness: the one that mattered gets read at the same weight as the nineteenth, which is how a correct verdict goes unnoticed. Depth on request, never by default.
 
 ## 4. Show the blind spots before the data
 
@@ -128,7 +132,11 @@ Two traps this exists to prevent, both seen in one day:
 
 ## 9. Check whether it was already tried
 
-Before any forward-looking answer — a budget, a plan, a forecast, "should we try X" — look for the previous attempt. In the account, across every ad account in the portfolio, and in `findings/`.
+Before any forward-looking answer — a budget, a plan, a forecast, "should we try X" — read `precedents.md` in the state repository first. It exists because deep analysis found precedents that quick answers denied existed.
+
+If the answer is not there, look further: in the account, across every ad account in the portfolio, and in `findings/` — and add the row you find.
+
+**A precedent transfers when the mechanics match, not the geography.** Objective × optimisation event × audience temperature. The same market gave CPM $36–94 on a cold lead-form and $6.51 on retargeting page-views — 6–14× apart. Quoting the wrong regime as a baseline is worse than quoting no baseline, because it looks measured.
 
 **An empty result from a benchmark or insights tool is not evidence that no history exists.** It means that tool has no data. The account is a separate question and answering it costs one query.
 
@@ -265,5 +273,6 @@ Consequences, all of them load-bearing:
 - **Find the root, do not assume it.** `git rev-parse --show-toplevel` from the current directory. Never a path beginning `/Users`, `/home` or `C:\`.
 - **Never store an absolute path.** Not in a finding, not in a gap, not in an instruction to another session. It will be wrong the next time and wrong for everyone else.
 - **Anything a session must reach lives under the connected folder.** A sibling directory on the host does not exist for it. If a file needs to be produced and used, produce it inside.
+- **Temporary files go to the session's own temp directory, never into the state repository.** Two stray scratch files landed in it during one night of testing. The archive holds what was established; scratch work leaving traces there is noise a future reader has to rule out.
 
 When something turns out to be unreachable, check this before concluding a feature is missing. A path that is not mounted fails exactly like a capability that is absent, and the wrong diagnosis costs hours.

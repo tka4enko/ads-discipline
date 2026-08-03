@@ -70,6 +70,14 @@ Never guess intent. The goal of a change lives in the head of whoever made it; i
 
 Every record with `verify_after ≤ today` and `outcome: null` goes into the brief's "due" section with its `metric`, `baseline` and `expected` restated, so the reader can judge without opening files.
 
+## 5a. Landing pages — weekly, or when a creative's link changes
+
+Once a week, and whenever the diff shows a new or changed ad link: fetch each distinct landing URL the live ads point at and record a content fingerprint (title + form field count + presence of the thank-you path) in the snapshot.
+
+A changed fingerprint on an unchanged ad is worth a brief line: the page moved or was rewritten under a running campaign, which is how a conversion rule silently stops matching. This is the cheapest available cover for the class of failure that has already happened here twice — a rule pinned to an exact URL, and a rule matching a path that no longer exists.
+
+Read-only. Never submit a form, never follow a call-to-action that performs an action.
+
 ## 6. Brief → `briefs/YYYY-MM-DD.md`
 
 First line, always, before anything:
