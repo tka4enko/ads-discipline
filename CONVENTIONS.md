@@ -226,6 +226,22 @@ Rules that make the record usable later:
 - **Take the baseline BEFORE the change** when the change goes through a session. For changes detected after the fact, the baseline is yesterday's snapshot and `applied_by` is `human (detected)`.
 - **`intent: pending` blocks the verdict.** A record whose goal nobody stated cannot be judged succeeded or failed. Pending intents are raised in the daily brief and once per interactive session, through the surface's question tool.
 
+## 12b. Unanswered questions are asked, not stored
+
+A record that needs a human answer does not get one by waiting. `intent: pending` sat on a spending campaign for six days across three sessions, and an open gap was raised only when it happened to block a budget question. Both were correctly recorded and correctly ignored.
+
+`pending.md` in the state repository is the single page of everything unanswered: records with `intent: pending`, open gaps, and decisions whose `verify_after` has passed while `outcome` is still null. One row, one question.
+
+**A blank that blocks the question kills the number.** Where an unanswered row is an input to what was asked, do not produce a figure, a range, or a table of scenarios — that is a guess wearing the clothes of an answer. Emit the four-line `CANNOT SAY` of §2, and ask.
+
+**One question per session, otherwise.** Before the first substantive answer, read `pending.md`. If a row has never been asked, ask the most expensive one — ranked by how many decisions it blocks, the way `gaps.md` is already sorted, never by how easy it is to answer. Exactly one. A prompt carrying several decisions gets answered on the first and abandoned.
+
+**Ask through the surface's question tool, never in prose.** A sentence inside a report reads as commentary and is skipped. Build every choice from data actually retrieved, never from an option composed for the occasion. One question, one decision — do not attach the connectors, the next step, or a second topic to it. The question mechanism supplies its own free-text escape, usually labelled "Other", and that label cannot be changed: say in the question text what it is for, and never add a second free-text entry of your own beside it.
+
+**The answer is written back in the same turn.** It goes into the record it came from — `intent: stated` with `metric`, `expected` and `verify_after` filled, or `status: closed` in `gaps.md` — the row leaves `pending.md`, and it is committed per §13. An answer that is not recorded immediately will be asked again tomorrow, which teaches the reader that these questions can be ignored.
+
+**"I don't know" is an answer.** Mark the row asked, and do not raise it again for fourteen days — except where it blocks the question in front of you, which overrides the delay. A page that asks the same thing every morning stops being read, and then the one question that mattered goes with it.
+
 ## 13. Writing something down is not finishing
 
 The connected folder is the working copy of the state repository. Writing a file there puts it on one disk, in one place, until the next overwrite. It is not saved and no other session will find it.

@@ -53,11 +53,9 @@ Pulling matters more than it looks: another person may have recorded findings, r
 
 **Step 2 — build the choices from that list, and from nothing else.**
 
-Every choice is a repository address returned in step 1. Nothing else — no entry you composed yourself.
+Every choice is a repository address returned in step 1. Nothing else — no entry you composed yourself. Annotate each repository so the choice can be made without opening anything: whether it is empty, and whether it already contains `findings/` or `gaps.md`. Say in the question text what the free-text escape is for: *if the right one is not listed, choose Other and type `owner/repo`.*
 
-The question mechanism adds its own free-text escape, usually labelled "Other", and that label cannot be changed. So say what it is for in the question text: *if the right one is not listed, choose Other and type `owner/repo`.* Never add a second free-text entry of your own beside it — two of them is worse than a badly named one. Annotate each repository so the choice can be made without opening anything: whether it is empty, and whether it already contains `findings/` or `gaps.md`.
-
-**One question, one decision.** Do not attach anything else to it — not the connectors, not Google Ads, not what to do next. Those belong in the status block, which comes after. A prompt carrying several decisions gets answered on the first one and abandoned.
+How to ask — the question tool, the "Other" escape, one question one decision — is §12b. It is the same mechanism everywhere; do not keep a second copy of it here.
 
 **These are forbidden as choices, without exception:**
 

@@ -1,6 +1,6 @@
 ---
 name: daily
-description: The daily routine - snapshot what nothing can recover, diff against yesterday, record detected changes with baselines, raise decisions due for verification, write the brief. Run by a scheduled task, or by hand with "run the daily routine". Not interactive - it asks nobody anything; questions it cannot answer become intent-pending records for humans to settle later.
+description: The daily routine - snapshot what nothing can recover, diff against yesterday, record detected changes with baselines, raise decisions due for verification, write the brief. Run by a scheduled task, or by hand with "run the daily routine". Not interactive - it asks nobody anything; what it cannot answer goes to pending.md for the next interactive session to raise.
 ---
 
 # Daily routine
@@ -78,6 +78,20 @@ A changed fingerprint on an unchanged ad is worth a brief line: the page moved o
 
 Read-only. Never submit a form, never follow a call-to-action that performs an action.
 
+## 5b. Rebuild `pending.md`
+
+One page at the repository root holding everything that needs a human answer. Rewritten in full each run, from three sources and no others:
+
+- `decisions/*.md` with `intent: pending`
+- `gaps.md` entries with `status: open`
+- `decisions/*.md` where `verify_after` has passed and `outcome` is still null
+
+Each row carries: the record id, the question in one sentence, what it unblocks, the date it has been waiting since, `asked_at`, and `answer_state` — one of `never_asked`, `unknown`, `answered`.
+
+**Carry `asked_at` and `answer_state` across the rebuild.** They live only here; regenerating them as `never_asked` re-asks a question the human already declined, which is exactly the behaviour §12b forbids. Rows whose source record is gone — gap closed, intent stated — drop out.
+
+Order by how many decisions the row blocks, most first. That ordering is what §12b consumes when it picks the single question to ask.
+
 ## 6. Brief → `briefs/YYYY-MM-DD.md`
 
 First line, always, before anything:
@@ -97,4 +111,4 @@ If N > 1, this line is a warning and leads. Then, only non-empty sections, in th
 
 - Meta unreachable → no snapshot; brief says why; task result is a failure
 - state repository unwritable → the run failed, say so loudly; there is no such thing as a successful run that wrote nothing
-- never ask anything interactively; unanswerable questions become intent-pending records
+- never ask anything interactively — the routine has no human; it only writes `pending.md` so that the next interactive session asks
