@@ -92,7 +92,23 @@ Establish which write path exists and say which one applies, because they must n
 - **git connector, write access** → commits go through the connector, no local file
 - **neither** → findings cannot be recorded. Say this plainly and stop short of analysis (CONVENTIONS §12)
 
+**Test the write, do not infer it.** A connector that lists repositories has proved it can read. Write access is a separate grant and fails separately — reporting it as ready because reading worked is the mistake that produces a confident setup report and a 403 on the first finding.
+
+**Some surfaces have only one usable path, and picking the other is worse than stopping.** Where a session cannot delete files — a connected folder reached through a bridge rather than a real filesystem — git cannot work there at all: it takes and releases lock files on every operation, and a lock left behind wedges the repository for the human afterwards. Where the connector is the only viable path and it is not authorised, say exactly that and name the fix. Do not build a local working copy as a consolation prize.
+
+**A connector that sees nothing private is not empty, it is narrowed.** Zero private repositories from an authenticated account means the authorisation was granted for public ones — not that no archive exists. Never conclude an archive is absent from a search that structurally could not find it, and never propose creating a new one on that basis: a second archive costs more than a missing one.
+
 Name the state layout while reporting: `snapshots/` and `briefs/` are written by the daily routine, `decisions/` by whoever changes anything, `findings/` and `gaps.md` by analysis. If `briefs/` has no file newer than 2 days, say so — the routine is the system's pulse, and a stopped pulse is the first thing to report.
+
+### 4. Write `capabilities.md`
+
+Everything established above is thrown away when the report is read. Write it down instead: `capabilities.md` at the root of the state repository, in the form of CONVENTIONS §6a, rewritten in full each run.
+
+One row per capability, from the calls actually made — never from a name in a connector list. Record what reached, **what did not**, and the surface each answer applies to: this session's surface is known, the others are `unknown` until a run there says otherwise. Absence is the half that matters; a capability confirmed present on one surface and never tested on the scheduled one is exactly how a routine writes a brief with no data in it.
+
+Carry forward rows this run could not retest rather than deleting them, and keep their original `verified` date so age is visible. Where a row costs money per call, carry the ceiling; where it needs a secret, carry the reference name and never the value.
+
+This is the one thing a later session cannot reproduce cheaply — every other line of the report is one query away.
 
 ## Output
 

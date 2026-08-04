@@ -105,6 +105,32 @@ The same skill runs in Claude Code, Cowork, Projects and chat. Capabilities diff
 
 The team reads in Projects. A skill that only works where subagents exist is a skill they cannot use.
 
+## 6a. What this project can actually do is written down, per surface
+
+The table above describes the surfaces. It says nothing about **this** project: which connectors are authorised, how far each reaches, what it costs, and where it silently is not there.
+
+That gets rediscovered every session, or — worse — not rediscovered, and the session walks into a path that cannot work. Both happened in one day: a CRM present interactively and absent in the scheduled run, and a repository connector that reached public repositories and returned "not found" for private ones, which read as "no archive exists" and started a second one.
+
+`capabilities.md` in the state repository is the answer, one row per capability:
+
+```
+image-generation  provider · connector · Cowork ✓ routine ✓ CLI ✓
+                  ceiling $N/run · verified 2026-08-04 · secret_ref IMAGE_API_KEY
+crm-read          HubSpot · connector · Cowork ✓ routine ✗ CLI ✓ · verified 2026-08-04
+repo-write        GitHub connector · public ✓ private ✗ · verified 2026-08-04
+account-write     Meta · connector · all ✓ · requires a §12a record before the call
+```
+
+**Absence is the valuable half.** A row saying a capability is missing on one surface is worth more than three rows confirming presence, because absence is what fails silently and late.
+
+**A capability is claimed only from a live call, never from a name in a list.** A connector that appears in an interface and errors on use is not a capability. `setup` writes these rows from the calls it actually made; nothing else may add one.
+
+**Verification ages.** A row older than a fortnight is `unknown`, not present — authorisations get revoked, scopes get narrowed, tokens expire. Treat an aged row the way §5 treats stale state: say so before leaning on it.
+
+**Read it before choosing a path, not after failing one.** Where a needed capability is absent or unknown on this surface, say so and name the fix — do not fall back to a route that cannot work here and leave the human holding the pieces.
+
+**Secrets never appear.** The row carries the name of the reference, never the value.
+
 ## 7. Read the API, not your memory
 
 Platform thresholds change. Meta retuned learning-phase reset parameters in spring 2026. Where an API field exists — `learning_stage_info`, `dynamic_lp_conversions_threshold`, `dynamic_lp_days_threshold`, `primary_status_reasons` — read it. Where the field is unavailable for that object, say "unknown" rather than substituting a remembered rule.
