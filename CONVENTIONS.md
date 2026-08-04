@@ -168,8 +168,10 @@ that the history was unavailable, so the reader knows the answer may repeat work
 or contradict a decision already made.
 
 **A tool that writes into the working directory writes into the archive — so
-start it there.** Audit bundles land in `runs/<id>/` relative to wherever the
-session began. Run them from the state repository's working copy, or the
+start it there.** Audit bundles land in `.claude-ads/runs/<run_id>/` relative to
+wherever the session began — a hidden directory, which is exactly how a whole
+quarter of measurements goes unversioned without anyone noticing.
+Run them from the state repository's working copy, or the
 measurement sits outside version control and the next quarter has nothing to
 compare against. The bundle is state, not scratch: a dated measurement carrying
 its own schema and source lineage. Its rendered reports are not — they
