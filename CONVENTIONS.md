@@ -156,23 +156,25 @@ The same applies to configuration that was never done. A session with no state r
 
 ## 11. Where the state lives — the connected folder is it
 
-Findings, gaps and decisions live in a git repository, and **the connected folder is its working copy**. There is nothing else to configure, store or search for.
+Findings, gaps and decisions live in a git repository, not in this plugin.
 
-**Folder is a working copy** — pull, then work. Normal case, no setup.
+**Its address is not shipped here.** Take it from the project instructions, or
+from the folder connected to this session — a working copy is that repository.
+If neither names one, ask, and do not guess: reading the wrong repository is
+worse than reading none.
 
-**Folder is empty** — ask once for a repository address, then try to clone. In a cloud session this usually fails: an authorised GitHub connector reaches the API, but puts no credentials in the shell, so `git` cannot clone a private repository. That is a property of the sandbox, not a fault. When it happens and the connector works, use the connector for everything and leave the folder unused. An empty repository is a fine starting point either way: create `findings/`, `gaps.md` and commit.
+Where no repository is reachable, say so. Answer from live data only and state
+that the history was unavailable, so the reader knows the answer may repeat work
+or contradict a decision already made.
 
-**Never ask for a token, a password or an SSH key.** They belong to the person, not to a session, and the connector exists precisely so they are never needed.
-
-**No folder** — say so. Answer from live data, and note each time that nothing is being recorded and the next session will repeat this work.
-
-That is the whole rule. Do not search for the repository, do not infer it, and do not push it into a setting: one question, once, and git keeps the answer in the remote where it cannot drift from what the folder actually is.
-
-**Pull before reading, not only before writing.** A working copy is a snapshot of whenever it was last pulled. Someone else may have recorded a finding yesterday, retracted one this morning, or closed a gap you are about to report as open — none of it visible until you pull. Report how far behind the copy was; silence there reads as "nothing changed".
-
-**Never guess an address.** Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else.
-
-**A tool that writes into the working directory writes into the archive — so start it there.** Audit bundles land in `runs/<id>/` relative to wherever the session began. Run them from the state repository's working copy, or the measurement sits outside version control and the next quarter has nothing to compare against. The bundle is state, not scratch: a dated measurement carrying its own schema and source lineage. Its rendered reports are not — they regenerate from the bundle deterministically, so version the bundle and never the PDF.
+**A tool that writes into the working directory writes into the archive — so
+start it there.** Audit bundles land in `runs/<id>/` relative to wherever the
+session began. Run them from the state repository's working copy, or the
+measurement sits outside version control and the next quarter has nothing to
+compare against. The bundle is state, not scratch: a dated measurement carrying
+its own schema and source lineage. Its rendered reports are not — they
+regenerate from the bundle deterministically, so version the bundle and never
+the PDF.
 
 ## 12. Record without being asked
 

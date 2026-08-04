@@ -1,7 +1,7 @@
 {
   "name": "ads",
   "description": "Makes ad spend verifiable for people without an analyst: every number carries a source, every change a baseline, every promise a verification date. It does not optimise campaigns — it makes every claim about them checkable, and every failure impossible to miss.",
-  "version": "0.2.30",
+  "version": "0.2.31",
   "author": {
     "name": "Sasha Tkachenko",
     "email": "sasha.tkachenko@markupus.com"
