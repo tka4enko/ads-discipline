@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Skills and agents for running paid advertising accounts without a full-time analyst.",
-    "version": "0.2.29"
+    "version": "0.2.30"
   },
   "plugins": [
     {
       "name": "ads",
       "source": "./",
       "description": "Makes ad spend verifiable for people without an analyst: every number carries a source, every change a baseline, every promise a verification date. It does not optimise campaigns — it makes every claim about them checkable, and every failure impossible to miss.",
-      "version": "0.2.29",
+      "version": "0.2.30",
       "author": {
         "name": "Sasha Tkachenko"
       },

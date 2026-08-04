@@ -172,6 +172,8 @@ That is the whole rule. Do not search for the repository, do not infer it, and d
 
 **Never guess an address.** Reading the wrong repository is worse than reading none: it produces history that looks authoritative and belongs to somebody else.
 
+**A tool that writes into the working directory writes into the archive — so start it there.** Audit bundles land in `runs/<id>/` relative to wherever the session began. Run them from the state repository's working copy, or the measurement sits outside version control and the next quarter has nothing to compare against. The bundle is state, not scratch: a dated measurement carrying its own schema and source lineage. Its rendered reports are not — they regenerate from the bundle deterministically, so version the bundle and never the PDF.
+
 ## 12. Record without being asked
 
 Nobody will remember to tell you to write things down, and nobody should have to. Decide yourself, by these categories — then write first and report after. Never ask permission to record: "shall I record this?" is the same failure as not recording.
